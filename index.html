@@ -124,6 +124,19 @@ h2 em{color:var(--mu)}
 .shot:hover{border-color:rgba(200,180,138,.5);transform:translateY(-6px)}
 .shot:hover img{filter:none;transform:scale(1.05)}
 .shot span{display:block;padding:14px 18px;font-size:.83rem;color:var(--mu);border-top:1px solid var(--ln)}
+.shots.ig-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:900px;margin-top:8px}
+.ig-gallery .ph{height:auto;min-height:0;display:grid;place-items:center;background:#0d0d0f}
+.ig-gallery img{display:block;width:auto;height:auto;max-width:100%;max-height:520px;object-fit:contain;filter:none}
+.ig-gallery .shot:hover img{transform:none;filter:none}
+.ig-gallery .ph.empty{min-height:300px}
+.ig-gallery .ph.empty::after{content:"Add the second screenshot as instagram-reach-2.png";max-width:22ch;padding:24px;text-align:center;color:var(--mu);font-size:.85rem;line-height:1.6}
+@media(max-width:900px){.shots.ig-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.shots.ig-gallery{grid-template-columns:1fr}.ig-gallery img{max-height:560px}}
+.event-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:980px;margin-top:28px}
+.event-gallery .ph{min-height:180px;display:grid;place-items:center;background:#0d0d0f}
+.event-gallery img{display:block;width:auto;height:auto;max-width:100%;max-height:300px;object-fit:contain}
+.event-gallery .ph.empty::after{content:attr(data-upload);max-width:24ch;padding:24px;text-align:center;color:var(--mu);font-size:.82rem;line-height:1.6}
+@media(max-width:560px){.event-gallery{grid-template-columns:1fr}.event-gallery img{max-height:360px}}
 .vids{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
 .vidcard{display:block;border:1px solid var(--ln);border-radius:18px;overflow:hidden;background:var(--card);transition:border-color .4s,transform .3s}
 .vidcard:hover{border-color:rgba(200,180,138,.55);transform:translateY(-6px)}
@@ -143,6 +156,42 @@ h2 em{color:var(--mu)}
 .vidcard .openlink{display:block;padding:12px 22px;font-size:.78rem;color:var(--mu);text-align:right;border-top:1px solid var(--ln)}
 .vidcard .openlink:hover{color:var(--ac)}
 .chips li a{display:block;margin:-10px -20px;padding:10px 20px}
+/* LinkedIn work: give each video a designed cover and each client link a clear home */
+.vidcard .thumb{isolation:isolate;overflow:hidden;justify-content:flex-start;padding:34px;background:linear-gradient(135deg,#24221e 0%,#131315 55%,#0e1011 100%)}
+.vidcard .thumb::before,.vidcard .thumb::after{content:"";position:absolute;z-index:0;border:1px solid rgba(200,180,138,.22);border-radius:50%;transition:transform .8s var(--e),border-color .5s}
+.vidcard .thumb::before{width:310px;height:310px;right:-85px;top:-150px;box-shadow:0 0 0 28px rgba(200,180,138,.035),0 0 0 60px rgba(200,180,138,.025)}
+.vidcard .thumb::after{width:170px;height:170px;right:34px;bottom:-110px;border-color:rgba(200,180,138,.14)}
+.vidcard:hover .thumb::before{transform:scale(1.13) rotate(18deg);border-color:rgba(200,180,138,.55)}
+.vidcard .art{position:relative;z-index:1;max-width:70%;font-family:var(--s);font-size:clamp(2.4rem,5vw,4.8rem);line-height:.86;letter-spacing:-.035em;color:var(--tx)}
+.vidcard .art em{display:block;color:var(--ac);font-weight:400}
+.vidcard .art small{display:block;margin-top:18px;font:500 .62rem var(--b);letter-spacing:.2em;color:var(--mu)}
+.vidcard .thumb .tag2{z-index:2}
+.vidcard .thumb .play{position:absolute;right:12%;bottom:20%;z-index:2;width:64px;height:64px;background:rgba(11,11,13,.55);backdrop-filter:blur(8px)}
+.vidcard .thumb .orbit{position:absolute;right:8%;top:22%;width:120px;height:120px;border:1px solid rgba(200,180,138,.35);border-radius:50%;display:grid;place-items:center;color:var(--ac);font-size:.7rem;letter-spacing:.15em;animation:spin 24s linear infinite}
+.vidcard:nth-child(2) .thumb{background:linear-gradient(145deg,#171b1a,#101112 58%,#201d18)}
+.vidcard:nth-child(2) .thumb::before{right:-120px;top:auto;bottom:-190px;width:390px;height:390px;border-radius:38%;transform:rotate(32deg)}
+.vidcard:nth-child(2):hover .thumb::before{transform:rotate(48deg) scale(1.08)}
+.chips.clients-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%;margin-top:0}
+.clients-links li{display:flex;align-items:center;min-width:0;padding:0!important;overflow:hidden;border:1px solid var(--ln);border-radius:14px;color:var(--tx);background:linear-gradient(135deg,rgba(200,180,138,.055),transparent 65%),var(--card);transition:border-color .3s,transform .35s var(--e),background .3s}
+.chips.clients-links li:hover{border-color:rgba(200,180,138,.55);background:linear-gradient(135deg,rgba(200,180,138,.12),transparent 75%),var(--card);color:var(--tx);transform:translateY(-3px)}
+.clients-links a{display:flex!important;align-items:center;gap:12px;width:100%;min-width:0;margin:0!important;padding:15px 17px!important;font-size:.92rem;font-weight:500;color:var(--tx)}
+.clients-links .brandmeta{display:flex;flex:1;min-width:0;flex-direction:column;line-height:1.35}
+.clients-links .brandmeta small{margin-top:4px;font-size:.68rem;font-weight:400;letter-spacing:.08em;color:var(--mu)}
+.clients-links .out{font-size:1rem;color:var(--mu);transition:transform .3s,color .3s}
+.clients-links a:hover .out{transform:translate(3px,-3px);color:var(--ac)}
+.youtube-card{display:flex;align-items:center;gap:18px;margin-top:16px;padding:22px 24px;border:1px solid var(--ln);border-radius:18px;background:linear-gradient(100deg,rgba(200,180,138,.09),transparent 58%),var(--card);transition:border-color .3s,transform .3s,background .3s}
+.youtube-card:hover{border-color:rgba(200,180,138,.55);transform:translateY(-3px);background:linear-gradient(100deg,rgba(200,180,138,.14),transparent 65%),var(--card)}
+.youtube-card .yt-icon{width:50px;height:36px;flex:0 0 50px;border-radius:11px;background:#e62117;display:grid;place-items:center;color:#fff}
+.youtube-card .yt-icon svg{width:20px;height:20px;fill:currentColor}
+.youtube-card .yt-copy{flex:1;min-width:0}
+.youtube-card b{display:block;font-weight:500;font-size:1rem;color:var(--tx)}
+.youtube-card small{display:block;margin-top:4px;font-size:.8rem;color:var(--mu)}
+.youtube-card .yt-label{display:block;margin-top:7px;font-size:.66rem;letter-spacing:.16em;color:var(--ac)}
+.youtube-card .yt-out{font-size:1.2rem;color:var(--mu);transition:transform .3s,color .3s}
+.youtube-card:hover .yt-out{transform:translate(3px,-3px);color:var(--ac)}
+@media(max-width:900px){.chips.clients-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.chips.clients-links{grid-template-columns:1fr}.youtube-card{gap:13px;padding:17px}.youtube-card .yt-icon{width:42px;height:31px;flex-basis:42px}.youtube-card small{font-size:.72rem}.vidcard .thumb{padding:26px}.vidcard .art{font-size:2.8rem}.vidcard .thumb .play{right:8%;bottom:16%;width:54px;height:54px}.vidcard .thumb .orbit{right:4%;width:92px;height:92px;font-size:.58rem}}
+#clients{padding-bottom:52px}#expertise{padding-top:52px}
 /* featured writing */
 .feature{max-width:780px}
 .feature h3{font-family:var(--s);font-weight:400;font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.15;margin-bottom:26px}
@@ -217,7 +266,7 @@ footer a:hover{color:var(--ac)}
 
 <nav id="nav"><div class="wrap">
 <a href="#home" class="logo">Nidhi<i>.</i></a>
-<ul><li><a href="#about">About</a></li><li><a href="#results">Results</a></li><li><a href="#clients">Clients</a></li><li><a href="#expertise">Expertise</a></li><li><a href="#video">Video</a></li><li><a href="#experience">Experience</a></li></ul>
+<ul><li><a href="#about">About</a></li><li><a href="#results">Results</a></li><li><a href="#instagram-reach">Instagram</a></li><li><a href="#events">Events</a></li><li><a href="#clients">Clients</a></li><li><a href="#expertise">Expertise</a></li><li><a href="#video">Video</a></li><li><a href="#experience">Experience</a></li></ul>
 <a href="#contact" class="pill mag">Let's talk <span>↗</span></a>
 </div></nav>
 
@@ -284,35 +333,62 @@ footer a:hover{color:var(--ac)}
 </div>
 <div class="vids rv">
 <div class="vidcard mag" tabindex="0" role="button" data-urn="urn:li:activity:7488558139936501761" data-title="AI strategy &amp; business transformation — LinkedIn post">
-<div class="thumb"><span class="tag2">LINKEDIN VIDEO</span><span class="play">▶</span></div>
+<div class="thumb"><span class="tag2">LINKEDIN VIDEO · 01</span><div class="art">AI strategy<em>in motion.</em><small>BUSINESS TRANSFORMATION</small></div><span class="orbit" aria-hidden="true">IDEAS · IMPACT</span><span class="play" aria-hidden="true">▶</span></div>
 <div class="info"><div><b>AI strategy &amp; business transformation</b><small>Video post · LinkedIn — tap to play</small></div><span class="go">▶</span></div></div>
 <div class="vidcard mag" tabindex="0" role="button" data-urn="urn:li:activity:7497624544229249024" data-title="AI search, generative AI &amp; SEO — LinkedIn post">
-<div class="thumb"><span class="tag2">LINKEDIN VIDEO</span><span class="play">▶</span></div>
+<div class="thumb"><span class="tag2">LINKEDIN VIDEO · 02</span><div class="art">Search is<em>changing.</em><small>GENERATIVE AI · SEO</small></div><span class="orbit" aria-hidden="true">SEARCH · CREATE</span><span class="play" aria-hidden="true">▶</span></div>
 <div class="info"><div><b>AI search, generative AI &amp; SEO</b><small>Video post · LinkedIn — tap to play</small></div><span class="go">▶</span></div></div>
 </div>
 </div></section>
 
+<section id="instagram-reach" style="padding-top:40px"><div class="wrap">
+<div class="lab">04 / PERSONAL INSTAGRAM REACH</div>
+<h2>My own page, <em>in numbers.</em></h2>
+<p style="color:var(--mu);max-width:60ch;margin-bottom:26px">A snapshot of the reach and audience growth I built on my personal Instagram account.</p>
+<div class="shots ig-gallery rv">
+<div class="shot"><div class="ph"><img src="instagram-reach.png" alt="Instagram insights showing personal account reach" loading="lazy"></div><span>Personal Instagram insights · reach and audience growth</span></div>
+<div class="shot"><div class="ph"><img src="instagram-reach-2.png" alt="Additional Instagram insights showing personal account reach" loading="lazy" onerror="this.parentElement.classList.add('empty');this.remove()"></div><span>More personal Instagram insights</span></div>
+</div>
+</div></section>
+
+<section id="events" style="padding-top:40px"><div class="wrap">
+<div class="lab">05 / INDUSTRY EVENTS</div>
+<h2>Learning &amp; <em>collaborating.</em></h2>
+<p style="color:var(--mu);max-width:60ch;margin-bottom:8px">Moments from Meta and Flipkart collaboration events I attended.</p>
+<div class="event-gallery rv">
+<div class="shot"><div class="ph" data-upload="Upload as meta-event-1.png"><img src="meta-event-1.png" alt="Meta collaboration event, photo 1" loading="lazy" onerror="this.parentElement.classList.add('empty');this.remove()"></div><span>Meta collaboration event · 01</span></div>
+<div class="shot"><div class="ph" data-upload="Upload as meta-event-2.png"><img src="meta-event-2.png" alt="Meta collaboration event, photo 2" loading="lazy" onerror="this.parentElement.classList.add('empty');this.remove()"></div><span>Meta collaboration event · 02</span></div>
+<div class="shot"><div class="ph" data-upload="Upload as flipkart-event-1.png"><img src="flipkart-event-1.png" alt="Flipkart collaboration event, photo 1" loading="lazy" onerror="this.parentElement.classList.add('empty');this.remove()"></div><span>Flipkart collaboration event · 01</span></div>
+<div class="shot"><div class="ph" data-upload="Upload as flipkart-event-2.png"><img src="flipkart-event-2.png" alt="Flipkart collaboration event, photo 2" loading="lazy" onerror="this.parentElement.classList.add('empty');this.remove()"></div><span>Flipkart collaboration event · 02</span></div>
+</div>
+</div></section>
+
 <section id="clients" style="padding-top:40px"><div class="wrap">
-<div class="lab">04 / BRANDS &amp; CLIENTS</div>
+<div class="lab">06 / BRANDS &amp; CLIENTS</div>
 <h2>Pages I've <em>grown.</em></h2>
 <p style="color:var(--mu);max-width:60ch;margin-bottom:8px">A selection of brand and client pages I've planned content, campaigns and community management for, across Instagram and LinkedIn.</p>
 <div class="shots rv" style="margin-top:40px;grid-template-columns:repeat(2,1fr)">
 <div class="shot"><div class="ph"><img src="client1.jpg" alt="Instagram profile for Bauhus Design, a furniture brand, showing 10.1K followers" loading="lazy"></div><span>@bauhusdesign — furniture &amp; project management · 10.1K followers</span></div>
 <div class="shot"><div class="ph"><img src="client2.jpg" alt="Instagram profile for CookUp, a culinary assistant brand, showing 25.7K followers" loading="lazy"></div><span>@cookup.ma — culinary assistant &amp; recipes · 25.7K followers</span></div>
 </div>
-<h3 style="font-family:var(--s);font-weight:400;font-size:1.5rem;margin:46px 0 18px">LinkedIn pages I manage</h3>
-<ul class="chips rv">
-<li><a href="https://www.linkedin.com/company/vinove/" target="_blank" rel="noopener">Vinove ↗</a></li>
-<li><a href="https://www.linkedin.com/company/pixelcrayons/" target="_blank" rel="noopener">PixelCrayons ↗</a></li>
-<li><a href="https://www.linkedin.com/company/valuecoders/" target="_blank" rel="noopener">Valuecoders ↗</a></li>
-<li><a href="https://www.linkedin.com/company/workstatus/" target="_blank" rel="noopener">Workstatus ↗</a></li>
-<li>Invoicera</li>
-<li>AI Agentra</li>
+<h3 style="font-family:var(--s);font-weight:400;font-size:1.5rem;margin:46px 0 18px">LinkedIn and Youtube pages I manage</h3>
+<ul class="chips clients-links rv">
+<li><a href="https://www.linkedin.com/company/vinove/" target="_blank" rel="noopener"><span class="brandmeta">Vinove<small>LINKEDIN PAGE</small></span><span class="out">↗</span></a></li>
+<li><a href="https://www.linkedin.com/company/pixelcrayons/" target="_blank" rel="noopener"><span class="brandmeta">PixelCrayons<small>LINKEDIN PAGE</small></span><span class="out">↗</span></a></li>
+<li><a href="https://www.linkedin.com/company/valuecoders/" target="_blank" rel="noopener"><span class="brandmeta">Valuecoders<small>LINKEDIN PAGE</small></span><span class="out">↗</span></a></li>
+<li><a href="https://www.linkedin.com/company/workstatus/" target="_blank" rel="noopener"><span class="brandmeta">Workstatus<small>LINKEDIN PAGE</small></span><span class="out">↗</span></a></li>
+<li><a href="https://www.linkedin.com/company/agentra-io/" target="_blank" rel="noopener"><span class="brandmeta">AI Agentra<small>LINKEDIN PAGE</small></span><span class="out">↗</span></a></li>
+<li><a href="https://www.linkedin.com/company/invoicera/" target="_blank" rel="noopener"><span class="brandmeta">Invoicera<small>LINKEDIN PAGE</small></span><span class="out">↗</span></a></li>
+
 </ul>
+<a class="youtube-card" href="https://youtube.com/@bollygradstudioz" target="_blank" rel="noopener" aria-label="Visit the Bollygrad Studioz YouTube channel">
+<span class="yt-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg></span>
+<span class="yt-copy"><b>Bollygrad Studioz</b><small>YouTube channel I maintained · 9.3M subscribers · 77K videos</small><span class="yt-label">YOUTUBE CHANNEL</span></span><span class="yt-out" aria-hidden="true">↗</span>
+</a>
 </div></section>
 
 <section id="expertise"><div class="wrap">
-<div class="lab">05 / EXPERTISE</div>
+<div class="lab">07 / EXPERTISE</div>
 <h2>What I <em>do.</em></h2>
 <ul class="ex rv" id="ex">
 <li tabindex="0"><div class="r"><span class="n">01</span><h3>Social media strategy</h3><span class="ar">+</span></div><div class="d"><p>LinkedIn strategy, content planning and calendars, brand positioning, audience research, content pillars and campaign planning.</p></div></li>
@@ -325,7 +401,7 @@ footer a:hover{color:var(--ac)}
 </div></section>
 
 <section id="approach" style="padding-top:40px"><div class="wrap">
-<div class="lab">06 / MY APPROACH</div>
+<div class="lab">08 / MY APPROACH</div>
 <h2>One idea can become <em>an entire system.</em></h2>
 <p style="color:var(--mu);max-width:60ch;margin-bottom:8px">I don't treat social media as an isolated publishing channel. A strong piece of content can become:</p>
 <div class="steps rv">
@@ -335,7 +411,7 @@ footer a:hover{color:var(--ac)}
 </div></section>
 
 <section id="pixelcrayons" style="padding-top:40px"><div class="wrap">
-<div class="lab">07 / PIXELCRAYONS WORKFLOW</div>
+<div class="lab">09 / PIXELCRAYONS WORKFLOW</div>
 <h2>From content to <em>demand.</em></h2>
 <p style="color:var(--mu);max-width:60ch;margin-bottom:8px">At PixelCrayons, my role extends across almost the complete social media and demand-generation workflow, in a continuous loop.</p>
 <div class="steps rv">
@@ -352,7 +428,7 @@ footer a:hover{color:var(--ac)}
 </div></section>
 
 <section id="video" style="padding-top:40px"><div class="wrap">
-<div class="lab">08 / VIDEO CONTENT</div>
+<div class="lab">10 / VIDEO CONTENT</div>
 <h2>From idea <em>to camera.</em></h2>
 <p style="color:var(--mu);max-width:60ch;margin-bottom:8px">Video is a hands-on part of my work — research, ideation, scripting, shooting, publishing, distribution and performance review — for Vinove Software, ValueCoders, Invoicera, AI Agentra and PixelCrayons.</p>
 <div class="grid rv" data-tilt style="margin-top:32px">
@@ -365,7 +441,7 @@ footer a:hover{color:var(--ac)}
 </div></section>
 
 <section id="experience"><div class="wrap">
-<div class="lab">09 / EXPERIENCE</div>
+<div class="lab">11 / EXPERIENCE</div>
 <h2>Where I've <em>worked.</em></h2>
 <div class="stack">
 <div class="job" style="--i:0"><time>12/2022 — PRESENT</time><div><h3>Online Marketer</h3><div class="co">Valuecoders (Vinove)</div><ul>
@@ -389,7 +465,7 @@ footer a:hover{color:var(--ac)}
 </div></section>
 
 <section id="education" style="padding-top:40px"><div class="wrap">
-<div class="lab">10 / EDUCATION</div>
+<div class="lab">12 / EDUCATION</div>
 <h2>Learning &amp; <em>beyond work.</em></h2>
 <div class="two rv">
 <div><h3>Education</h3>
@@ -405,7 +481,7 @@ footer a:hover{color:var(--ac)}
 </div></section>
 
 <section id="contact" class="contact"><div class="wrap rv">
-<div class="lab">11 / CONTACT</div>
+<div class="lab">13 / CONTACT</div>
 <h2>Have a brand? <em>Let's grow it.</em></h2>
 <a href="mailto:nidhithakur123bsr@gmail.com" class="mail">nidhithakur123bsr@gmail.com</a>
 <div class="btns"><a href="mailto:nidhithakur123bsr@gmail.com" class="pill f mag">Send email <span>↗</span></a><a href="tel:+918630532713" class="pill mag">+91 86305 32713</a></div>
