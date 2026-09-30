@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -118,6 +118,11 @@ h2 em{color:var(--mu)}
 .c p{color:var(--mu);font-size:.92rem}
 /* proof of work */
 .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+.shots.client-gallery{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px 24px;margin-top:32px}
+.client-gallery .ph{display:flex;align-items:center;justify-content:center;background:#0d0d0f}
+.client-gallery .zoom-trigger{display:block;width:100%;border:0;padding:0;background:transparent;cursor:zoom-in;line-height:0}
+.client-gallery .shot img{display:block;width:100%;height:auto;max-height:460px;object-fit:contain;filter:none}
+.client-gallery .shot:hover img{transform:none;filter:none}
 .shot{border:1px solid var(--ln);border-radius:16px;overflow:hidden;background:var(--card);transition:border-color .4s,transform .4s}
 .shot .ph{overflow:hidden}
 .shot img{width:100%;display:block;filter:grayscale(.2) brightness(.95);transition:filter .5s,transform .6s var(--e)}
@@ -132,6 +137,15 @@ h2 em{color:var(--mu)}
 .ig-gallery .ph.empty::after{content:"Add the second screenshot as instagram-reach-2.png";max-width:22ch;padding:24px;text-align:center;color:var(--mu);font-size:.85rem;line-height:1.6}
 @media(max-width:900px){.shots.ig-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.shots.ig-gallery{grid-template-columns:1fr}.ig-gallery img{max-height:560px}}
+@media(max-width:560px){.shots.client-gallery{grid-template-columns:1fr}.client-gallery img{max-height:500px}}
+.client-gallery .shot:hover{transform:translateY(-4px)}
+.image-lightbox{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:32px;background:rgba(5,5,6,.94);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.image-lightbox.open{opacity:1;visibility:visible}
+.image-lightbox img{display:block;max-width:min(92vw,1200px);max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 24px 90px rgba(0,0,0,.55)}
+.image-lightbox .lightbox-close{position:absolute;top:20px;right:24px;width:46px;height:46px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(20,20,22,.75);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer}
+body.lightbox-open{overflow:hidden;cursor:auto!important}
+body.lightbox-open a,body.lightbox-open button{cursor:pointer!important}
+body.lightbox-open .cur,body.lightbox-open .ring{display:none!important}
 .event-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:980px;margin-top:28px}
 .event-gallery .ph{min-height:180px;display:grid;place-items:center;background:#0d0d0f}
 .event-gallery img{display:block;width:auto;height:auto;max-width:100%;max-height:300px;object-fit:contain}
@@ -367,9 +381,11 @@ footer a:hover{color:var(--ac)}
 <div class="lab">06 / BRANDS &amp; CLIENTS</div>
 <h2>Pages I've <em>grown.</em></h2>
 <p style="color:var(--mu);max-width:60ch;margin-bottom:8px">A selection of brand and client pages I've planned content, campaigns and community management for, across Instagram and LinkedIn.</p>
-<div class="shots rv" style="margin-top:40px;grid-template-columns:repeat(2,1fr)">
-<div class="shot"><div class="ph"><img src="client1.jpg" alt="Instagram profile for Bauhus Design, a furniture brand, showing 10.1K followers" loading="lazy"></div><span>@bauhusdesign — furniture &amp; project management · 10.1K followers</span></div>
-<div class="shot"><div class="ph"><img src="client2.jpg" alt="Instagram profile for CookUp, a culinary assistant brand, showing 25.7K followers" loading="lazy"></div><span>@cookup.ma — culinary assistant &amp; recipes · 25.7K followers</span></div>
+<div class="shots client-gallery rv">
+<div class="shot"><div class="ph"><button class="zoom-trigger" type="button" aria-label="Expand Bauhus Design Instagram screenshot"><img src="client1.jpg" alt="Instagram profile for Bauhus Design, a furniture brand, showing 10.1K followers" loading="lazy"></button></div><span>@bauhusdesign - furniture &amp; project management · 10.1K followers</span></div>
+<div class="shot"><div class="ph"><button class="zoom-trigger" type="button" aria-label="Expand CookUp Instagram screenshot"><img src="client2.jpg" alt="Instagram profile for CookUp, a culinary assistant brand, showing 25.7K followers" loading="lazy"></button></div><span>@cookup.ma - culinary assistant &amp; recipes · 25.7K followers</span></div>
+<div class="shot"><div class="ph"><button class="zoom-trigger" type="button" aria-label="Expand Droply Instagram screenshot"><img src="R1.jpeg" alt="Instagram profile and recent posts for Droply, a cargo and freight delivery company" loading="lazy"></button></div><span>@droply.ae - cargo &amp; freight delivery</span></div>
+<div class="shot"><div class="ph"><button class="zoom-trigger" type="button" aria-label="Expand Bauhus Design Instagram screenshot"><img src="R2.jpeg" alt="Instagram profile and recent posts for Bauhus Design, furniture and project management" loading="lazy"></button></div><span>@bauhusdesign - furniture design &amp; project management</span></div>
 </div>
 <h3 style="font-family:var(--s);font-weight:400;font-size:1.5rem;margin:46px 0 18px">LinkedIn and Youtube pages I manage</h3>
 <ul class="chips clients-links rv">
@@ -488,6 +504,7 @@ footer a:hover{color:var(--ac)}
 <div class="clock">NOIDA · <b id="clock">--:--</b> IST</div>
 </div></section>
 </main>
+<div class="image-lightbox" id="imageLightbox" role="dialog" aria-modal="true" aria-label="Expanded client screenshot"><button class="lightbox-close" type="button" aria-label="Close expanded image">×</button><img src="" alt=""></div>
 
 <footer><div class="wrap"><span>© <span id="y"></span> Nidhi Thakur. All rights reserved.</span><a href="#home">Back to top ↑</a></div></footer>
 
@@ -537,6 +554,11 @@ openOnly(items[0]);
 function loadEmbed(v){if(v.dataset.loaded)return;v.dataset.loaded='1';const urn=v.dataset.urn,title=v.dataset.title;
 v.innerHTML=`<div class="embed"><iframe src="https://www.linkedin.com/embed/feed/update/${urn}" height="570" width="100%" frameborder="0" allowfullscreen loading="lazy" title="${title}"></iframe></div><a class="openlink" href="https://www.linkedin.com/feed/update/${urn}" target="_blank" rel="noopener">Open on LinkedIn ↗</a>`}
 $$('.vidcard[data-urn]').forEach(v=>{v.addEventListener('click',()=>loadEmbed(v));v.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();loadEmbed(v)}})});
+// Expand client screenshots
+const lightbox=$('#imageLightbox'),lightboxImg=lightbox.querySelector('img'),lightboxClose=lightbox.querySelector('.lightbox-close');
+function closeLightbox(){lightbox.classList.remove('open');document.body.classList.remove('lightbox-open');lightboxImg.src=''}
+$$('.client-gallery .zoom-trigger').forEach(button=>button.addEventListener('click',()=>{const img=button.querySelector('img');lightboxImg.src=img.src;lightboxImg.alt=img.alt;lightbox.classList.add('open');document.body.classList.add('lightbox-open');lightboxClose.focus()}));
+lightboxClose.addEventListener('click',closeLightbox);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});addEventListener('keydown',e=>{if(e.key==='Escape'&&lightbox.classList.contains('open'))closeLightbox()});
 // counters + reveal
 function count(el){const t=+el.dataset.c,p=el.dataset.p||'',s=el.dataset.s||'';if(reduce){el.textContent=p+t+s;return}
 const t0=performance.now();(function f(n){const k=Math.min(1,(n-t0)/1400),e=1-Math.pow(1-k,3);el.textContent=p+Math.round(t*e).toLocaleString('en-US')+s;if(k<1)requestAnimationFrame(f)})(t0)}
